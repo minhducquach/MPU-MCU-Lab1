@@ -91,15 +91,13 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int status = 0;	// led status
-  int start = 0; 	// flag to check if the leds are in their initial states or not
-
-  // all leds are turned off before the loop starts
+  int status = 0;
+  int start = 0;
   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);
   HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_SET);
   while (1)
   {
-	  if (status == 0){			// RED turns on, YELLOW turns off
+	  if (status == 0){
 		  if (start == 1){
 			  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
 		  }
@@ -107,7 +105,7 @@ int main(void)
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 		  status = 1;
 	  }
-	  else if (status == 1){	// YELLOW turns on, RED turns off
+	  else if (status == 1){
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 		  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
 		  status = 0;
@@ -117,6 +115,26 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
   }
+//  int time = 2;
+//    /* set LED_RED on */
+//    HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);
+//    /* set LED_YELLOW off */
+//    HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_RESET);
+//    /* Infinite loop */
+//    /* USER CODE BEGIN WHILE */
+//    while (1)
+//    {
+//      /* USER CODE END WHILE */
+//  	  HAL_Delay(1000);
+//  	  time--;
+//  	  if(time == 0) {
+//  		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
+//  		  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
+//  		  time = 2;
+//  	  }
+//      /* USER CODE BEGIN 3 */
+//    }
+  /* USER CODE END 3 */
 }
 
 /**
