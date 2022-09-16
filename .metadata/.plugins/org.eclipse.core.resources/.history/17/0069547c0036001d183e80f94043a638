@@ -114,6 +114,8 @@ int main(void)
   		  HAL_GPIO_TogglePin(LED_RED_1_GPIO_Port, LED_RED_1_Pin);
   		  HAL_GPIO_TogglePin(LED_GREEN_2_GPIO_Port, LED_GREEN_2_Pin);
   	  }
+  	  display7_1SEG(counter_1);
+  	  display7_2SEG(counter_2);
   	  // GREEN vertical OFF, YELLOW vertical ON
   	  if (time_counter == 8){
   		  counter_2 = 3;
@@ -147,10 +149,8 @@ int main(void)
   	  }
   	  // decrement time_counter
   	  if (time_counter != 0) time_counter = time_counter - 1;
-//  	  counter_1--;
-//  	  counter_2--;
-  	  display7_1SEG(counter_1--);
-  	  display7_2SEG(counter_2--);
+  	  counter_1--;
+  	  counter_2--;
   	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
