@@ -100,24 +100,23 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if (start == 0){				// turn on RED led
+	  if (start == 0){		// turn on RED led
 		  start = 1;
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 	  }
-	  else if (time_counter == 5){	// turn on GREEN led
+	  else if (time_counter == 5){	// turn on YELLOW led
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
-		  HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
-	  }
-	  else if (time_counter == 3){	// turn on YELLOW led
-		  HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
 		  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
+	  }
+	  else if (time_counter == 2){	// turn on GREEN led
+		  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
+		  HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
 	  }
 	  else if (time_counter == 0){	// return to RED led
 		  time_counter = 10;
-		  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
+		  HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 	  }
-	  // decrement time_counter
 	  if (time_counter != 0) time_counter = time_counter - 1;
 	  HAL_Delay(1000);
     /* USER CODE END WHILE */

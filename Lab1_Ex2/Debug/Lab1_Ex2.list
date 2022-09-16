@@ -138,7 +138,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if (start == 0){		// turn on RED led
+	  if (start == 0){				// turn on RED led
  8000184:	683b      	ldr	r3, [r7, #0]
  8000186:	2b00      	cmp	r3, #0
  8000188:	d106      	bne.n	8000198 <main+0x4c>
@@ -151,7 +151,7 @@ int main(void)
  8000192:	f000 fc29 	bl	80009e8 <HAL_GPIO_TogglePin>
  8000196:	e024      	b.n	80001e2 <main+0x96>
 	  }
-	  else if (time_counter == 5){	// turn on YELLOW led
+	  else if (time_counter == 5){	// turn on GREEN led
  8000198:	687b      	ldr	r3, [r7, #4]
  800019a:	2b05      	cmp	r3, #5
  800019c:	d108      	bne.n	80001b0 <main+0x64>
@@ -159,22 +159,22 @@ int main(void)
  800019e:	2120      	movs	r1, #32
  80001a0:	4815      	ldr	r0, [pc, #84]	; (80001f8 <main+0xac>)
  80001a2:	f000 fc21 	bl	80009e8 <HAL_GPIO_TogglePin>
-		  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
- 80001a6:	2140      	movs	r1, #64	; 0x40
+		  HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
+ 80001a6:	2180      	movs	r1, #128	; 0x80
  80001a8:	4813      	ldr	r0, [pc, #76]	; (80001f8 <main+0xac>)
  80001aa:	f000 fc1d 	bl	80009e8 <HAL_GPIO_TogglePin>
  80001ae:	e018      	b.n	80001e2 <main+0x96>
 	  }
-	  else if (time_counter == 2){	// turn on GREEN led
+	  else if (time_counter == 3){	// turn on YELLOW led
  80001b0:	687b      	ldr	r3, [r7, #4]
- 80001b2:	2b02      	cmp	r3, #2
+ 80001b2:	2b03      	cmp	r3, #3
  80001b4:	d108      	bne.n	80001c8 <main+0x7c>
-		  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
- 80001b6:	2140      	movs	r1, #64	; 0x40
+		  HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
+ 80001b6:	2180      	movs	r1, #128	; 0x80
  80001b8:	480f      	ldr	r0, [pc, #60]	; (80001f8 <main+0xac>)
  80001ba:	f000 fc15 	bl	80009e8 <HAL_GPIO_TogglePin>
-		  HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
- 80001be:	2180      	movs	r1, #128	; 0x80
+		  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
+ 80001be:	2140      	movs	r1, #64	; 0x40
  80001c0:	480d      	ldr	r0, [pc, #52]	; (80001f8 <main+0xac>)
  80001c2:	f000 fc11 	bl	80009e8 <HAL_GPIO_TogglePin>
  80001c6:	e00c      	b.n	80001e2 <main+0x96>
@@ -186,8 +186,8 @@ int main(void)
 		  time_counter = 10;
  80001ce:	230a      	movs	r3, #10
  80001d0:	607b      	str	r3, [r7, #4]
-		  HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
- 80001d2:	2180      	movs	r1, #128	; 0x80
+		  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
+ 80001d2:	2140      	movs	r1, #64	; 0x40
  80001d4:	4808      	ldr	r0, [pc, #32]	; (80001f8 <main+0xac>)
  80001d6:	f000 fc07 	bl	80009e8 <HAL_GPIO_TogglePin>
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
@@ -195,6 +195,7 @@ int main(void)
  80001dc:	4806      	ldr	r0, [pc, #24]	; (80001f8 <main+0xac>)
  80001de:	f000 fc03 	bl	80009e8 <HAL_GPIO_TogglePin>
 	  }
+	  // decrement time_counter
 	  if (time_counter != 0) time_counter = time_counter - 1;
  80001e2:	687b      	ldr	r3, [r7, #4]
  80001e4:	2b00      	cmp	r3, #0
@@ -205,7 +206,7 @@ int main(void)
 	  HAL_Delay(1000);
  80001ee:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
  80001f2:	f000 f95f 	bl	80004b4 <HAL_Delay>
-	  if (start == 0){		// turn on RED led
+	  if (start == 0){				// turn on RED led
  80001f6:	e7c5      	b.n	8000184 <main+0x38>
  80001f8:	40010800 	.word	0x40010800
 
