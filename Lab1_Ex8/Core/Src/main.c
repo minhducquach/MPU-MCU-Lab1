@@ -47,8 +47,9 @@
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
 /* USER CODE BEGIN PFP */
-
+void setNumberOnClock(int);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -83,6 +84,7 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
+  MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -91,6 +93,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  setNumberOnClock(1);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -133,8 +136,51 @@ void SystemClock_Config(void)
   }
 }
 
-/* USER CODE BEGIN 4 */
+/**
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_GPIO_Init(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 
+  /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, CLK_0_Pin|CLK_1_Pin|CLK_2_Pin|CLK_3_Pin
+                          |CLK_4_Pin|CLK_5_Pin|CLK_6_Pin|CLK_7_Pin
+                          |CLK_8_Pin|CLK_9_Pin|CLK_10_Pin|CLK_11_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : CLK_0_Pin CLK_1_Pin CLK_2_Pin CLK_3_Pin
+                           CLK_4_Pin CLK_5_Pin CLK_6_Pin CLK_7_Pin
+                           CLK_8_Pin CLK_9_Pin CLK_10_Pin CLK_11_Pin */
+  GPIO_InitStruct.Pin = CLK_0_Pin|CLK_1_Pin|CLK_2_Pin|CLK_3_Pin
+                          |CLK_4_Pin|CLK_5_Pin|CLK_6_Pin|CLK_7_Pin
+                          |CLK_8_Pin|CLK_9_Pin|CLK_10_Pin|CLK_11_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+}
+
+/* USER CODE BEGIN 4 */
+void setNumberOnClock(int num){
+	if (num == 0) HAL_GPIO_WritePin(CLK_0_GPIO_Port, CLK_0_Pin, GPIO_PIN_RESET);
+	if (num == 1) HAL_GPIO_WritePin(CLK_1_GPIO_Port, CLK_1_Pin, GPIO_PIN_RESET);
+	if (num == 2) HAL_GPIO_WritePin(CLK_2_GPIO_Port, CLK_2_Pin, GPIO_PIN_RESET);
+	if (num == 3) HAL_GPIO_WritePin(CLK_3_GPIO_Port, CLK_3_Pin, GPIO_PIN_RESET);
+	if (num == 4) HAL_GPIO_WritePin(CLK_4_GPIO_Port, CLK_4_Pin, GPIO_PIN_RESET);
+	if (num == 5) HAL_GPIO_WritePin(CLK_5_GPIO_Port, CLK_5_Pin, GPIO_PIN_RESET);
+	if (num == 6) HAL_GPIO_WritePin(CLK_6_GPIO_Port, CLK_6_Pin, GPIO_PIN_RESET);
+	if (num == 7) HAL_GPIO_WritePin(CLK_7_GPIO_Port, CLK_7_Pin, GPIO_PIN_RESET);
+	if (num == 8) HAL_GPIO_WritePin(CLK_8_GPIO_Port, CLK_8_Pin, GPIO_PIN_RESET);
+	if (num == 9) HAL_GPIO_WritePin(CLK_9_GPIO_Port, CLK_9_Pin, GPIO_PIN_RESET);
+	if (num == 10) HAL_GPIO_WritePin(CLK_10_GPIO_Port, CLK_10_Pin, GPIO_PIN_RESET);
+	if (num == 11) HAL_GPIO_WritePin(CLK_11_GPIO_Port, CLK_11_Pin, GPIO_PIN_RESET);
+}
 /* USER CODE END 4 */
 
 /**
